@@ -12,9 +12,9 @@ namespace Basket.API.Repositories
     {
         public readonly IDistributedCache _redisCache;
 
-        public BasketRepository(IDistributedCache cache)
+        public BasketRepository(IDistributedCache redisCache)
         {
-            _redisCache = cache;
+            _redisCache = redisCache;
         }
 
         public async Task DeleteBasket(string userName)
@@ -25,6 +25,7 @@ namespace Basket.API.Repositories
         public async Task<ShoppingCart> GetBasket(string userName)
         {
             var basket = await _redisCache.GetStringAsync(userName);
+
             if (String.IsNullOrEmpty(basket))
                 return null;
 
