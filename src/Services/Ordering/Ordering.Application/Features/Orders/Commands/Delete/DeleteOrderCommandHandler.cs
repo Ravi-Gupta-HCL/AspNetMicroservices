@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿  using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Ordering.Application.Contracts.Persistence;
@@ -34,7 +34,7 @@ namespace Ordering.Application.Features.Orders.Commands.Delete
                 throw new NotFoundException(nameof(Order), request.Id);
             }
 
-            _mapper.Map(request, orderToDelete, typeof(DeleteOrderCommand), typeof(Order));
+            //_mapper.Map(request, orderToDelete, typeof(DeleteOrderCommand), typeof(Order));
 
             await _orderRepository.DeleteAsync(orderToDelete);
             _logger.LogInformation($"Order {orderToDelete.Id} is successfully deleted.");

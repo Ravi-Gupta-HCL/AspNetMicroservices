@@ -53,8 +53,8 @@ namespace Discount.API.Extensions
                 }
                 catch (NpgsqlException ex)
                 {
-                    logger.LogInformation("An error occured while migrating the postgresql database.");
-                    if (retryForAvailability <50)
+                    logger.LogInformation("An error occured while migrating the postgresql database." + ex.Message);
+                    if (retryForAvailability < 50)
                     {
                         retryForAvailability++;
                         System.Threading.Thread.Sleep(50);
