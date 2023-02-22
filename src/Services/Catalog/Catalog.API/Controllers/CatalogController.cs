@@ -11,8 +11,9 @@ using System.Threading.Tasks;
 namespace Catalog.API.Controllers
 {
     [ApiController]
+
     [Route("api/v1/controller")]
-    public class CatalogController:ControllerBase
+    public class CatalogController : ControllerBase
     {
         private readonly IProductRepository _repository;
         private readonly ILogger<CatalogController> _logger;
@@ -24,21 +25,21 @@ namespace Catalog.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(Product),(int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             var products = await _repository.GetProducts();
             return Ok(products);
         }
 
-        [HttpGet("{id:length(24)}",Name ="GetProduct")]
+        [HttpGet("{id:length(24)}", Name = "GetProduct")]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Product), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Product>> GetProductById( string id)
+        public async Task<ActionResult<Product>> GetProductById(string id)
         {
             var product = await _repository.GetProduct(id);
 
-            if (product==null)
+            if (product == null)
             {
                 _logger.LogError($"Product with id:{id}, not found.");
                 return NotFound();
@@ -46,7 +47,7 @@ namespace Catalog.API.Controllers
             return Ok(product);
         }
 
-        [Route("[action]/{category}",Name = "GetProductByCategory")]
+        [Route("[action]/{category}", Name = "GetProductByCategory")]
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Product>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<Product>>> GetProductByCategory(string category)

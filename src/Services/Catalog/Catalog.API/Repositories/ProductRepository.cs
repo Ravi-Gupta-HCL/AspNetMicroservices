@@ -1,5 +1,7 @@
 ﻿using Catalog.API.Data;
+
 using Catalog.API.Entities;
+using Catalog.API.Repositories;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
