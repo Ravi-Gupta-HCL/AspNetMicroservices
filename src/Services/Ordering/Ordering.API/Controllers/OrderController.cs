@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Ordering.API.Controllers
 {   [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/[Order]")]
     public class OrderController:ControllerBase
     {
         private readonly IMediator _mediator;

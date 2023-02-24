@@ -15,7 +15,7 @@ using MassTransit.Transports;
 namespace Basket.API.Controllers
 {
     [ApiController]
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/[Basket]")]
     public class BasketController : ControllerBase
     {
         private readonly IBasketRepository _repository;
